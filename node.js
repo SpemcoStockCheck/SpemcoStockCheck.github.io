@@ -56,10 +56,7 @@ function search(nameKey, myArray){
 	var myNewArray = [];
     for (var i=1; i < myArray.length; i++) {
 
-        if(myArray[i].Product_Code.toLowerCase().indexOf(nameKey.toLowerCase()) > -1 ||
-           myArray[i].Manufacturer.toLowerCase().indexOf(nameKey.toLowerCase()) > -1 ||
-        	 myArray[i].URL.toLowerCase().indexOf(nameKey.toLowerCase()) > -1 ||
-        	 myArray[i].On_Hand.indexOf(nameKey) > -1) {
+        if(myArray[i].Product_Code.toLowerCase().indexOf(nameKey.toLowerCase()) > -1) {
               myNewArray.push(myArray[i]);
         }
     }
