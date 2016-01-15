@@ -41,7 +41,8 @@ var parser = parse({delimiter: ','}, function (err, data) {
   	records.push({
     	Product_Code: line[0],
       Manufacturer: line[1],
-      On_Hand: line[2]
+      On_Hand: line[2],
+      URL: line[3]
     });
     // console.log(line[0],line[1], line[2]);
     // console.log(records.length);
@@ -56,7 +57,8 @@ function search(nameKey, myArray){
     for (var i=1; i < myArray.length; i++) {
 
         if(myArray[i].Product_Code.toLowerCase().indexOf(nameKey.toLowerCase()) > -1 ||
-        	 myArray[i].Manufacturer.toLowerCase().indexOf(nameKey.toLowerCase()) > -1 ||
+           myArray[i].Manufacturer.toLowerCase().indexOf(nameKey.toLowerCase()) > -1 ||
+        	 myArray[i].URL.toLowerCase().indexOf(nameKey.toLowerCase()) > -1 ||
         	 myArray[i].On_Hand.indexOf(nameKey) > -1) {
               myNewArray.push(myArray[i]);
         }
@@ -83,7 +85,7 @@ app.post('/upload',function(req,res){
           console.log(err)
             // return res.end("Error uploading file.");
             // res.redirect('http://localhost/SpemcoStockCheck/FrontEnd/upload.html?uploaded=false');
-            res.redirect('http://spemcostockcheck.azurewebsites.net/upload.html?uploaded=false');
+            res.redirect('http://spemcostockcheck.github.io/upload.html?uploaded=false');
         }
         console.log('success...')
         records = [];
@@ -93,14 +95,15 @@ app.post('/upload',function(req,res){
             records.push({
               Product_Code: line[0],
               Manufacturer: line[1],
-              On_Hand: line[2]
+              On_Hand: line[2],
+              URL: line[3]
             });
             // console.log(line[0],line[1], line[2]);
             // console.log(records.length);
             callback();
           });
           // res.redirect('http://localhost/SpemcoStockCheck/FrontEnd/upload.html?uploaded='+(data.length-1));
-          res.redirect('http://spemcostockcheck.azurewebsites.net/upload.html?uploaded='+(data.length-1));
+          res.redirect('http://spemcostockcheck.github.io/upload.html?uploaded='+(data.length-1));
           
         }
         );
