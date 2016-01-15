@@ -61,10 +61,15 @@ function myFunction() {
         $("#metaInfo").append(result.length + " results");
         $("#listOfPeople").empty();
         for(var i=0; i<result.length; i++){
+          var link = '';
+          if(result[i].URL.length > 5){
+            link = '<a href="' + result[i].URL + '" target="_blank">View</a>';
+          }
           $("#listOfPeople").append('<li class="collection-item avatar"> <i class="circle" style="background: #1E1A70;">' +
             result[i].On_Hand
             +'</i><span class="title"><b>' + 
-              result[i].Manufacturer + '</b></span><p style="text-align:left;">' + result[i].Product_Code + ' </p></li>');
+              result[i].Manufacturer + '</b></span><p style="text-align:left;">' + result[i].Product_Code + ' ' + link +
+              ' </p></li>');
           }
     }});
 }
